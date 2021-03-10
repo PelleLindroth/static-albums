@@ -1,6 +1,72 @@
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
+const albums = JSON.parse(fs.readFileSync('./data/albums.json', {
+  encoding: 'utf-8'
+}))
+const outputDir = path.join('dist')
+const templatePath = path.join('views', 'index.ejs')
+
+const pages = []
+let page = []
+let pageObject = {}
+
+const style = process.argv[2]
+
+albums.forEach(((album, index) => {
+  if (index % 15 === 0 && index != 0) {
+    pageObject = {
+      albums: page,
+      filename: `${(index - 15) + 1}-${index}.html`,
+      template: `${(index - 15) + 1}-${index}.ejs`
+    }
+    pages.push(pageObject)
+    page = []
+  } else if (index === albums.length - 1) {
+    pageObject = {
+      albums: page,
+      filename: `${(index - 15) + 1}-${index}.html`,
+      template: `${(index - 15) + 1}-${index}.ejs`
+    }
+    pages.push(pageObject)
+  }
+  page.push(album)
+}))
+
+for (let i = 0; i < pages.length; i++) {
+  let page = pages[i]
+  let data = {}
+  if (i === 0) {
+    data = {
+      albums: page.albums,
+      next: pages[i + 1].filename,
+      previous: null
+    }
+  } else if (i === pages.length - 1) {
+    data = {
+      albums: page.albums,
+      next: null,
+      previous: pages[i - 1].filename,
+    }
+  } else {
+    data = {
+      albums: page.albums,
+      previous: pages[i - 1].filename,
+      next: pages[i + 1].filename
+    }
+  }
+
+  data.style = style
+
+  ejs.renderFile(templatePath, data, (err, str) => {
+    if (err) {
+      console.log(err)
+    } else {
+      const outputPath = path.join(outputDir, page.filename)
+      fs.writeFileSync(outputPath, str)
+    }
+  })
+}
 
 // Generating a Static Web site
 // Utgå från albums.csv/.json.
@@ -13,3 +79,5 @@ const fs = require('fs')
 // Skapa minst två olika stylesheets på sidan och styr 
 // vilket stylesheet som ska användas med hjälp av en 
 // miljövariabel.
+
+

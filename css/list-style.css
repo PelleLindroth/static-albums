@@ -1,0 +1,97 @@
+:root {
+  font-size: 62.5%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #777;
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  color: #fff;
+  position: relative;
+}
+
+header {
+  background-color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  color: ivory;
+  font-family: 'Kanit', sans-serif;
+  font-size: 3.2rem;
+  padding: 2rem 0 2rem 2rem;
+}
+
+.album-list {
+  list-style: none;
+  margin: auto;
+  width: fit-content;
+  margin: auto;
+}
+
+.album-list .album {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  background-color: #292929;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  min-width: 54rem;
+  padding: 1rem;
+}
+
+.album-list .album h1 {
+  font-size: 1.2rem;
+}
+.album-list .album h2 {
+  font-size: 1rem;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  width: 22rem;
+}
+
+nav .next-wrapper,
+nav .previous-wrapper {
+  min-width: 11rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+nav .previous-wrapper {
+  top: 3rem;
+  left: 8rem;
+}
+
+nav .next-wrapper {
+  top: 3rem;
+  right: 8rem;
+}
+
+nav .next-wrapper a,
+nav .previous-wrapper a {
+  border-radius: 0.5rem;
+  background-color: #ececec;
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+  min-width: 10rem;
+  padding: 1rem 2rem;
+  text-align: center;
+}

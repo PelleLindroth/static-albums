@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="<%= `../css/${style}.css` %>" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header><h1>STATIC ALBUMS PAGE</h1></header>
+      <ul class="album-list">
+        <% for (let i = 0; i < albums.length; i++) { %>
+        <li class="album">
+          <h1><%= albums[i].Title %></h1>
+          <h2><%= albums[i].Name %></h2>
+        </li>
+        <% } %>
+      </ul>
+      <nav>
+        <div class="previous-wrapper">
+          <% if (previous) { %>
+          <a href="<%= previous %>">PREVIOUS</a>
+          <% } %>
+        </div>
+        <div class="next-wrapper">
+          <% if (next) { %>
+          <a href="<%= next %>">NEXT</a>
+          <% } %>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>
