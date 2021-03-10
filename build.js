@@ -25,8 +25,8 @@ albums.forEach(((album, index) => {
   } else if (index === albums.length - 1) {
     pageObject = {
       albums: page,
-      filename: `${(index - 15) + 1}-${index}.html`,
-      template: `${(index - 15) + 1}-${index}.ejs`
+      filename: `${(index) - 1}-${index}.html`,
+      template: `${(index) - 1}-${index}.ejs`
     }
     pages.push(pageObject)
   }
