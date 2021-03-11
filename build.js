@@ -64,26 +64,19 @@ for (let i = 0; i < pages.length; i++) {
 
   data.style = style
 
-  ejs.renderFile(templatePath, data, (err, str) => {
-    if (err) {
-      console.log(err)
-    } else {
-      const outputPath = path.join(outputDir, page.filename)
-      fs.writeFileSync(outputPath, str)
-    }
-  })
+
+  // ejs.renderFile(templatePath, data, (err, str) => {
+  //   if (err) {
+  //     console.log(err)
+  //   } else {
+  //     const outputPath = path.join(outputDir, page.filename)
+  //     fs.writeFileSync(outputPath, str)
+  //   }
+  // })
 }
 
-// Generating a Static Web site
-// Utgå från albums.csv/.json.
+module.exports = { pages }
 
-// Sätt upp ett litet projekt som kan generera en 
-// statisk webbplats där man kan bläddra bland albumen. 
-// Varje sida bör innehålla 10-20st album och ska vara i 
-//en separat html-fil.
 
-// Skapa minst två olika stylesheets på sidan och styr 
-// vilket stylesheet som ska användas med hjälp av en 
-// miljövariabel.
 
 
