@@ -11,22 +11,28 @@ const pages = []
 let page = []
 let pageObject = {}
 
-const style = process.argv[2]
+let style = process.argv[2]
+
+if (!style || style != 'list-style' && style != 'sleeve-style') {
+  style = 'list-style'
+}
+
+let perPage = (style === 'list-style') ? 10 : 15
 
 albums.forEach(((album, index) => {
-  if (index % 15 === 0 && index != 0) {
+  if (index % perPage === 0 && index != 0) {
     pageObject = {
       albums: page,
-      filename: `${(index - 15) + 1}-${index}.html`,
-      template: `${(index - 15) + 1}-${index}.ejs`
+      filename: `${(index - perPage) + 1}-${index}.html`,
+      template: `${(index - perPage) + 1}-${index}.ejs`
     }
     pages.push(pageObject)
     page = []
   } else if (index === albums.length - 1) {
     pageObject = {
       albums: page,
-      filename: `${(index) - 1}-${index}.html`,
-      template: `${(index) - 1}-${index}.ejs`
+      filename: `${(index) - page.length + 1}-${index + 1}.html`,
+      template: `${(index) - page.length + 1}-${index + 1}.ejs`
     }
     pages.push(pageObject)
   }
